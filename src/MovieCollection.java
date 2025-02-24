@@ -65,9 +65,9 @@ public class MovieCollection {
     public void searchTitles() {
         ArrayList<String> movieList = new ArrayList<>();
         System.out.print("Enter a title search term: ");
-        String title = scan.nextLine();
+        String title = scan.nextLine().toLowerCase();
         for (int i = 0; i < collection.size(); i++) {
-            if (collection.get(i).getTitle().contains(title)) {
+            if (collection.get(i).getTitle().toLowerCase().contains(title)) {
                 movieList.add(collection.get(i).getTitle());
             }
         }
@@ -104,12 +104,12 @@ public class MovieCollection {
         ArrayList<String> movieList = new ArrayList<>();
         ArrayList<String> movies = new ArrayList<>();
         System.out.print("Enter a person to search for: ");
-        String name = scan.nextLine();
+        String name = scan.nextLine().toLowerCase();
         for (int i = 0; i < collection.size(); i++) {
             names.add(Arrays.toString(collection.get(i).getCast().split("\\|")));
         }
         for (int i = 0; i < names.size(); i++) {
-            if (names.get(i).contains(name) && !movieList.contains(name)) {
+            if (names.get(i).toLowerCase().contains(name) && !movieList.contains(name)) {
                 movieList.add(name);
             }
         }
@@ -125,10 +125,10 @@ public class MovieCollection {
         System.out.print("Enter number: ");
         int num = scan.nextInt()-1;
         scan.nextLine();
-        String temp = movieList.get(num);
+        String temp = movieList.get(num).toLowerCase();
         System.out.println();
         for (int i = 0; i < collection.size(); i++) {
-            if (collection.get(i).getCast().contains(temp)) {
+            if (collection.get(i).getCast().toLowerCase().contains(temp)) {
                 movies.add(collection.get(i).getTitle());
             }
         }
