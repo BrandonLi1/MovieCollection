@@ -14,8 +14,7 @@ public class MovieCollection {
         Start();
     }
 
-    public void loadMovieData() {
-        ArrayList<String> adder = new ArrayList<>();
+    private void loadMovieData() {
         try {
             File myFile = new File("src//movies_data.csv");
             Scanner fileScanner = new Scanner(myFile);
@@ -106,11 +105,12 @@ public class MovieCollection {
         System.out.print("Enter a person to search for: ");
         String name = scan.nextLine().toLowerCase();
         for (int i = 0; i < collection.size(); i++) {
-            names.add(Arrays.toString(collection.get(i).getCast().split("\\|")));
+          String[] splitData = (collection.get(i).getCast().split("\\|"));
+            names.addAll(Arrays.asList(splitData));
         }
         for (int i = 0; i < names.size(); i++) {
-            if (names.get(i).toLowerCase().contains(name) && !movieList.contains(name)) {
-                movieList.add(name);
+            if (names.get(i).toLowerCase().contains(name) && !movieList.contains(names.get(i))) {
+                movieList.add(names.get(i));
             }
         }
         if (movieList.isEmpty()) {
@@ -134,7 +134,7 @@ public class MovieCollection {
         }
         selectionSortWordList(movies);
         for (int i = 0; i < movies.size(); i++) {
-            System.out.println(i + 1 + ". " + movieList.get(i));
+            System.out.println(i + 1 + ". " + movies.get(i));
         }
         System.out.println("Which movie would you like to learn more about? ");
         System.out.print("Enter number: ");
